@@ -61,6 +61,21 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal'; // ternary operator
+    const html = `
+    <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+    <div class="movements__value">${mov}</div>
+  </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html)
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -76,62 +91,61 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 
 // SLICE
-let arr = ['a', 'b', 'c', 'd', 'e']
+// let arr = ['a', 'b', 'c', 'd', 'e']
 
-console.log(arr.slice())
+// console.log(arr.slice())
 
 // SPLICE
 
-console.log((arr.splice(2))) //cuts off extracted elements--mutates array
+// console.log((arr.splice(2))) //cuts off extracted elements--mutates array
 
 // REVERSE
-const arr2 = ['j', 'i', 'h', 'g', 'f']
-console.log(arr2.reverse())
+// const arr2 = ['j', 'i', 'h', 'g', 'f']
+// console.log(arr2.reverse())
 
 // CONCAT
-const letters = arr.concat(arr2)
-console.log(letters)
-console.log([...arr, ...arr2])
+// const letters = arr.concat(arr2)
+// console.log(letters)
+// console.log([...arr, ...arr2])
 
 // JOIN
-console.log(letters.join(' - '))
-
+// console.log(letters.join(' - '))
 
 // FOR EACH LOOP OF ARRAYS
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //for of loop
 // for (const movement of movements)
-    for (const [i, movement] of movements.entries()) { //allows you to access counter if you loop over movement.entries()
-  if (movement > 0){
-    console.log(`Movement ${i +1 }: you deposited ${movement}`)
-    } else {
-      console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`)
-  }
-}
-console.log('------FOREACH------')
+//     for (const [i, movement] of movements.entries()) { //allows you to access counter if you loop over movement.entries()
+//   if (movement > 0){
+//     console.log(`Movement ${i +1 }: you deposited ${movement}`)
+//     } else {
+//       console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`)
+//   }
+// }
+// console.log('------FOREACH------')
 //for each loop - needs a callback function (cannot break out of with break statement)
-movements.forEach(function(mov, i, arr) {
-  if (mov > 0){
-    console.log(`Movement ${i + 1 }: you deposited ${mov}`)
-    } else {
-      console.log(`Movement ${i + 1}: you withdrew ${Math.abs(mov)}`)
-  }
-})
+// movements.forEach(function(mov, i, arr) {
+//   if (mov > 0){
+//     console.log(`Movement ${i + 1 }: you deposited ${mov}`)
+//     } else {
+//       console.log(`Movement ${i + 1}: you withdrew ${Math.abs(mov)}`)
+//   }
+// })
 
 //MAP
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function(value, key, map) {
-  console.log(`${key}: ${value}`);
-})
+// currencies.forEach(function(value, key, map) {
+//   console.log(`${key}: ${value}`);
+// })
 
-//SET 
-const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR'])
-console.log(currenciesUnique)
-currenciesUnique.forEach(function(value, _, map) {
-  console.log(`${key}: ${value}`)
-})
+//SET (sets don't have keys so key is not needed here, that's why _ is in there)
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR'])
+// console.log(currenciesUnique)
+// currenciesUnique.forEach(function(value, _, map) {
+//   console.log(`${key}: ${value}`)
+// })
