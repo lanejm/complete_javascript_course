@@ -68,13 +68,54 @@ const displayMovements = function (movements) {
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-    <div class="movements__value">${mov}</div>
+    <div class="movements__value">${mov}€</div>
   </div>
     `;
-    containerMovements.insertAdjacentHTML('afterbegin', html)
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 displayMovements(account1.movements);
+
+const user = 'Steven Thomas Williams';
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(function (name) {
+        return name[0];
+      })
+      .join('');
+  });
+};
+
+createUserNames(accounts);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(int => int >= 1) //only adding values with interest > 1 to the acc
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -149,3 +190,37 @@ displayMovements(account1.movements);
 // currenciesUnique.forEach(function(value, _, map) {
 //   console.log(`${key}: ${value}`)
 // })
+
+// const euroToUsd = 1.1;
+// const movemmentsUsd = movements.map(function (mov) {
+//   return Math.round(mov * euroToUsd);
+// });
+
+// console.log(movemmentsUsd);
+
+// const movementsDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// ); //if statement is a ternary operator
+// console.log(movementsDescriptions);
+
+// FILTER METHOD
+// const deposits = movements.filter(function(mov){
+//   return mov > 0;
+
+// })
+// console.log(deposits)
+
+// const withdrawals = movements.filter(function(mov){
+//   return mov < 0
+// })
+// console.log(withdrawals)
+
+// console.log(movements)
+// //accumulator is like a snowball
+// const balance = movements.reduce(function(acc,cur,i,arr){
+//   return acc + cur
+// }, 0) //0 here is the "default number" for accumulator
+// console.log(balance)
