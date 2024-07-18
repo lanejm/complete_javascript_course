@@ -63,9 +63,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //////////////////////////////////////////////////////////////
 ////FUNCTIONS
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice(0).sort((a, b) => a - b) : movements; // slice() to copy the array, a-b to sort in ascending order
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'; // ternary operator
     const html = `
     <div class="movements__row">
@@ -205,6 +207,12 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+let sorted = false //state variable default
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted)
+  sorted = !sorted
+})
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
