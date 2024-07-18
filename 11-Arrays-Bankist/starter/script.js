@@ -222,7 +222,7 @@ btnClose.addEventListener('click', function (e) {
 // SLICE
 // let arr = ['a', 'b', 'c', 'd', 'e']
 
-// console.log(arr.slice())
+// console.log(arr.slice())a
 
 // SPLICE
 
