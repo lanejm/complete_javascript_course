@@ -1,6 +1,7 @@
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
+  --color-brand--1: #e06cb9;
+  --color-brand--2: #b48bcc;
+  --color-brand--3: #5e6697;
 
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
@@ -50,9 +51,9 @@ a:visited {
 }
 
 .logo {
-  height: 5.2rem;
+  height: 20rem;
   align-self: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .workouts {
@@ -178,14 +179,14 @@ a:visited {
   color: var(--color-light--1);
 }
 
-.twitter-link:link,
-.twitter-link:visited {
+.website-link:link,
+.website-link:visited {
   color: var(--color-light--1);
   transition: all 0.2s;
 }
 
-.twitter-link:hover,
-.twitter-link:active {
+.website-link:hover,
+.website-link:active {
   color: var(--color-light--2);
 }
 
