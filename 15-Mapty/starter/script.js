@@ -32,25 +32,7 @@ class FoundCat extends Cat {
     this._setDescription();
   }
 }
-//   calcPace() {
-//     this.pace = this.duration / this.distance;
-//     return this.pace;
-//   }
-// }
 
-// class Cycling extends Workout {
-//   type = 'cycling';
-//   constructor(coords, distance, duration, elevationGain) {
-//     super(coords, distance, duration);
-//     this.elevationGain = elevationGain;
-//     this.calcSpeed();
-//     this._setDescription();
-//   }
-//   calcSpeed() {
-//     this.speed = this.distance / (this.duration / 60);
-//     return this.speed;
-//   }
-// }
 ///////////////////////////////////////////////////////////
 //Application Architecture
 
@@ -76,7 +58,6 @@ class App {
 
     //add event listeners
     form.addEventListener('submit', this._newCat.bind(this));
-    // inputType.addEventListener('change', this._toggleElevationField);
     containerCats.addEventListener('click', this._moveToPopup.bind(this));
   }
 
@@ -120,16 +101,7 @@ class App {
     form.classList.add('hidden');
     setTimeout(() => (form.style.display = 'grid'), 1000);
   }
-
-  // _toggleElevationField() {
-  //   inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
-  //   inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
-  // }
-
   _newCat(e) {
-    // const validInputs = (...inputs) =>
-    //   inputs.every(inp => Number.isFinite(inp));
-
     e.preventDefault();
     // get data from form
     const type = inputType.value;
@@ -141,28 +113,9 @@ class App {
     //if cat is found, create cat object
     if (type === 'found') {
       const notes = inputNotes.value;
-      // check if data is valid
-      // if (
-      //   !validInputs(distance, duration) ||
-      //   !allPositive(distance, duration)
-      // )
-      //   return alert('Inputs have to be positive numbers!');
-
       cat = new FoundCat([lat, lng], weight, coatLength, notes, type);
     }
 
-    // // if workout is cycling, create cycling object
-    // if (type === 'female') {
-    //   const  = +inputElevation.value;
-    //   //check if data is valid
-    //   if (
-    //     !validInputs(distance, duration, elevation) ||
-    //     !allPositive(distance, duration)
-    //   )
-    //     return alert('Inputs have to be positive numbers!');
-
-    //   cat = new FoundCat([lat, lng], bodyType, coatLength, uniqueID);
-    // }
     //add new object to workout array
     this.#cats.push(cat);
 
@@ -205,31 +158,6 @@ class App {
       </div>
       </div>
     `;
-    // if (cats.type === 'found')
-    //   html += `
-    //   <div class="cat__details">
-    //     <span class="cat__icon">🐱</span>
-    //   </div>
-    //   <div class="cat__details">
-    //     <span class="cat__icon">🦶🏼</span>
-    //     <span class="cat__value">${cats.uniqueID}</span>
-    //   </div>
-    // </li>`;
-
-    // if (workout.type == 'cycling')
-    //   html += `
-    //   <div class="workout__details">
-    //     <span class="workout__icon">⚡️</span>
-    //     <span class="workout__value">${workout.speed.toFixed(1)}</span>
-    //     <span class="workout__unit">km/h</span>
-    //   </div>
-    //   <div class="workout__details">
-    //     <span class="workout__icon">⛰</span>
-    //     <span class="workout__value">${workout.elevationGain}</span>
-    //     <span class="workout__unit">m</span>
-    //   </div>
-    // </li>`;
-
     form.insertAdjacentHTML('afterend', html);
   }
   _moveToPopup(e) {
@@ -246,8 +174,6 @@ class App {
         duration: 1,
       },
     });
-    //using public interface
-    // workout.click()
   }
 
   _setLocalStorage() {
