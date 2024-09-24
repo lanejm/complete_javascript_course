@@ -31,42 +31,36 @@
     <div class="sidebar">
       <img src="caterhood_transparent.png" alt="Logo" class="logo" />
 
-      <ul class="workouts">
+      <ul class="cats">
         <form class="form hidden">
           <div class="form__row">
-            <label class="form__label">Color</label>
+            <label class="form__label">Coat Color</label>
             <select class="form__input form__input--type">
-              <option value="running">Tabby</option>
-              <option value="running">Black</option>
-              <option value="running">White</option>
-              <option value="running">Orange</option>
-              <option value="running">Other</option>
+              <option value="found">Gray</option>
+              <option value="found">Black</option>
+              <option value="found">White</option>
+              <option value="found">Orange</option>
+              <option value="found">Calico</option>
+              <option value="found">Brown</option>
+              <option value="found">Tortoiseshell</option>
+              <option value="found">Other/Multiple</option>
             </select>
           </div>
           <div class="form__row">
-            <label class="form__label">Distance</label>
-            <input class="form__input form__input--distance" placeholder="km" />
+            <label class="form__label">Coat Length</label>
+            <input class="form__input form__input--coat"
+            placeholder="Shorthair">
           </div>
           <div class="form__row">
-            <label class="form__label">Duration</label>
-            <input
-              class="form__input form__input--duration"
-              placeholder="min"
-            />
+            <label class="form__label">Body Type</label>
+            <input class="form__input form__input--weight"
+            placeholder="Chonk">
+          </input>
           </div>
           <div class="form__row">
-            <label class="form__label">Cadence</label>
-            <input
-              class="form__input form__input--cadence"
-              placeholder="step/min"
-            />
-          </div>
-          <div class="form__row form__row--hidden">
-            <label class="form__label">Elev Gain</label>
-            <input
-              class="form__input form__input--elevation"
-              placeholder="meters"
-            />
+            <label class="form__label">Notes</label>
+            <input class="form__input form__input--notes" placeholder="Ear Notch">
+          </input>
           </div>
           <button class="form__btn">OK</button>
         </form>
@@ -121,7 +115,7 @@
       </ul>
 
       <p class="copyright">
-        &copy; Copyright
+        &copy; Copyright by
         <a
           class="website-link"
           target="_blank"
