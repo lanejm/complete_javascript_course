@@ -3,7 +3,6 @@ import recipeView from './views/recipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-// console.log(icons);
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -34,12 +33,10 @@ const controlRecipes = async function () {
     //2 rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 };
-//this first line is the same as the following two lines.
-['hashchange', 'load'].forEach(ev =>
-  window.addEventListener(ev, controlRecipes)
-);
-// window.addEventListener('hashchange', showRecipe);
-// window.addEventListener('load', showRecipe);
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
