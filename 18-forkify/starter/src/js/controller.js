@@ -1,3 +1,5 @@
+import * as model from './model.js';
+
 import icons from 'url:../img/icons.svg'; //parcel 2 import
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -33,30 +35,10 @@ const showRecipe = async function () {
     const id = window.location.hash.slice(1);
     //guard clause - if no id, return and show page
     if (!id) return;
-
-    //1 Loading recipe
     renderSpinner(recipeContainer);
-    const res = await fetch(
-      `https://forkify-api.jonas.io/api/v2/recipes/${id}`
-    );
-    const data = await res.json();
 
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    let { recipe } = data.data;
-
-    //update keys to get rid of underscores
-    recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
-    console.log(recipe);
+    // 1) loading recipe
+    await model.loadRecipe(id);
 
     //2 rendering recipe
     const markup = `
