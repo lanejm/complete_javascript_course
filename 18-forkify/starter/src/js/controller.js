@@ -38,7 +38,7 @@ const controlRecipes = async function () {
   }
 };
 //this first line is the same as the following two lines.
-['haschange', 'load'].forEach(ev =>
+['hashchange', 'load'].forEach(ev =>
   window.addEventListener(ev, controlRecipes)
 );
 // window.addEventListener('hashchange', showRecipe);
