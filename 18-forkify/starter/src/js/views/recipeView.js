@@ -16,18 +16,32 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
   }
 
-  renderSpinner = function () {
+  renderSpinner() {
     const markup = `<div class="spinner">
             <svg>
               <use href="${icons}#icon-loader"></use>
             </svg>
           </div>`;
-    this.#parentElement.innerHTML = '';
+    this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  };
+  }
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  renderError(message) {
+    const markup = `
+      <div class="error">
+            <div>
+              <svg>
+                <use href="${icons}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>`;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   #generateMarkup() {
