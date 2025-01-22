@@ -1,10 +1,9 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
-const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -22,7 +21,7 @@ const controlRecipes = async function () {
   try {
     //get the hash from the url to get unique ID of each recipe
     const id = window.location.hash.slice(1);
-    console.log(id);
+
     //guard clause - if no id, return and show page
     if (!id) return;
     recipeView.renderSpinner();
@@ -36,7 +35,24 @@ const controlRecipes = async function () {
     recipeView.renderError();
   }
 };
+
+const controlSearchResults = async function () {
+  try {
+    // Get search Query
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    // Load search results
+    await model.loadSearchResults(query);
+
+    // Render results
+    console.log(model.state.search.results);
+  } catch (err) {
+    console.log(err);
+  }
+};
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();
