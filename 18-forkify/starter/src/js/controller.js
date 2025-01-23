@@ -7,9 +7,9 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 //not javascript, parcel
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -53,7 +53,7 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // Render results
-    resultsView.render(model.getSearchResultsPage(1));
+    resultsView.render(model.getSearchResultsPage());
   } catch (err) {
     console.log(err);
   }
